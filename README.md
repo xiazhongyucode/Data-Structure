@@ -15,7 +15,7 @@
 
 图（Graph）是由顶点的有穷非空集合和顶点之间边的集合组成的，通常表示为G（V,E）,其中，G表示一个图，V是图G中顶点的集合，E是图G中边的集合。
 
-1.邻接矩阵
+### 1.邻接矩阵
 
 图的邻接矩阵（Adjacency Matrix）存储方式是用两个数组来表示图。一个一维数组存储图中顶点信息，一个二维数组（称为邻接矩阵）存储图中的边或弧的信息。
 
@@ -32,7 +32,32 @@ typedef struct{
 }MGraph;
 ```
 
-2.邻接表
+### 2.邻接表
+
+图的邻接表（Adjacency List）是指对图G中的每个顶点$v_i$建立一个单链表，第$i$个单链表中的结点表示依附于顶点$v_i$的边（对于有向图则是以顶点$v_i$为尾的弧），这个单链表就称为顶点$v_i$的边表（对于有向图则称为出边表）。边表的头指针和顶点的数据信息采用顺序存储（称为顶点表），所以在邻接表中存在两种结点：顶点表结点和边表结点。
+
+图的邻接表存储结构定义如下：
+
+```c++
+#define MaxVertexNum 100 //图中顶点数目的最大值
+typedef struct ArcNode{ //边表结点
+    int adjvex; //该弧所指向的顶点的位置
+    struct ArcNode *next; //指向下一条弧的指针
+    //InfoType info; //网的边权值
+}ArcNode;
+typedef struct VNode{ //顶点表结点
+    VertexType data; //顶点信息
+    ArcNode *first; //指向第一条依附该顶点的弧的指针
+}VNode,AdjList[MaxVertexNum];
+typedef struct{
+    AdjList vertices; //邻接表
+    int vexnum,arcnum; //图的顶点数和弧数
+}ALGraph; //ALGraph是以邻接表存储的图类型
+```
+
+
+
+
 
 
 
